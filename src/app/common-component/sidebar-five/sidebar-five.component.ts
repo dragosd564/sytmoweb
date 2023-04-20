@@ -20,16 +20,16 @@ export class SidebarFiveComponent implements OnInit {
       }
     });
 
-    this.sidebar.getSideBarData.subscribe((res: any) => {
-      this.sidebarData = res;
-      if (localStorage.getItem('showMenu')) {
-        this.opendSubMenu[0] = localStorage.getItem('showMenu');
-      } else {
-        this.opendSubMenu[0] = res[0].tittle;
-      }
-    });
+    // this.sidebar.getSideBarData.subscribe((res: any) => {
+    //   this.sidebarData = res;
+    //   if (localStorage.getItem('showMenu')) {
+    //     this.opendSubMenu[0] = localStorage.getItem('showMenu');
+    //   } else {
+    //     this.opendSubMenu[0] = res[0].tittle;
+    //   }
+    // });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   showMenu(val: string): void {
     if (this.opendSubMenu[0] != val) {
       this.opendSubMenu[0] = val;

@@ -9,7 +9,7 @@ import { WebstorgeService } from '../shared/webstorge.service';
   styleUrls: ['./core-component.component.scss'],
 })
 export class CoreComponentComponent implements OnInit {
-  public sideBaractivePath: boolean = false;
+  public sideBaractivePath: boolean = true;
   public darkTheme: boolean = false;
   public changeLayout: string = '1';
   public miniSidebar: boolean = false;
@@ -37,14 +37,14 @@ export class CoreComponentComponent implements OnInit {
         this.miniSidebar = false;
       }
     });
-        // <* condition to check mobile side bar position *>
-        this.sidebar.toggleMobileSideBar.subscribe((res: any) => {
-          if (res == 'true' || res == true) {
-            this.mobileSidebar = true;
-          } else {
-            this.mobileSidebar = false;
-          }
-        });
+    // <* condition to check mobile side bar position *>
+    this.sidebar.toggleMobileSideBar.subscribe((res: any) => {
+      if (res == 'true' || res == true) {
+        this.mobileSidebar = true;
+      } else {
+        this.mobileSidebar = false;
+      }
+    });
 
     this.sidebar.expandSideBar.subscribe((res: any) => {
       this.expandMenu = res;
@@ -55,7 +55,7 @@ export class CoreComponentComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   private getRoutes(data: any): void {
     if (
       data.url.split('/')[1] === 'errorpages' ||

@@ -1,87 +1,44 @@
 <div class="sidebar-overlay"></div>
 
-<div
-  class="customizer-links"
-  [ngClass]="{ 'move-settings': showNavigation || showPreview }"
->
+<!-- <div class="customizer-links" [ngClass]="{ 'move-settings': showNavigation || showPreview }">
   <ul class="sticky-sidebar">
     <li class="sidebar-icons">
-      <a
-        (click)="showPreview = !showPreview; showNavigation = false"
-        class="add-setting"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        data-bs-original-title="Tooltip on left"
-      >
-        <img
-          src="assets/img/icons/sidebar-icon-01.svg"
-          class="feather-five"
-          alt=""
-        />
+      <a (click)="showPreview = !showPreview; showNavigation = false" class="add-setting" data-bs-toggle="tooltip"
+        data-bs-placement="left" data-bs-original-title="Tooltip on left">
+        <img src="assets/img/icons/sidebar-icon-01.svg" class="feather-five" alt="" />
       </a>
     </li>
     <li class="sidebar-icons">
-      <a
-        (click)="showNavigation = !showNavigation; showPreview = false"
-        class="navigation-add"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        data-bs-original-title="Tooltip on left"
-      >
-        <img
-          src="assets/img/icons/sidebar-icon-02.svg"
-          class="feather-five"
-          alt=""
-        />
+      <a (click)="showNavigation = !showNavigation; showPreview = false" class="navigation-add" data-bs-toggle="tooltip"
+        data-bs-placement="left" data-bs-original-title="Tooltip on left">
+        <img src="assets/img/icons/sidebar-icon-02.svg" class="feather-five" alt="" />
       </a>
     </li>
     <li class="sidebar-icons">
-      <a
-        href="https://themeforest.net/item/dreamspos-pos-inventory-management-admin-dashboard-template/38834413"
-        target="_blank"
-        data-bs-toggle="tooltip"
-        data-bs-placement="left"
-        data-bs-original-title="Tooltip on left"
-      >
-        <img
-          src="assets/img/icons/sidebar-icon-03.svg"
-          class="feather-five"
-          alt=""
-        />
+      <a href="https://themeforest.net/item/dreamspos-pos-inventory-management-admin-dashboard-template/38834413"
+        target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Tooltip on left">
+        <img src="assets/img/icons/sidebar-icon-03.svg" class="feather-five" alt="" />
       </a>
     </li>
   </ul>
-</div>
+</div> -->
 
-<div
-  class="sidebar-settings preview-toggle"
-  [ngClass]="{ 'show-settings': showPreview }"
->
+<div class="sidebar-settings preview-toggle" [ngClass]="{ 'show-settings': showPreview }">
   <div class="sidebar-content sticky-sidebar-one">
     <div class="sidebar-header">
       <h5>Preview Settings</h5>
-      <a (click)="showPreview = false" class="sidebar-close" href="#"
-        ><img src="assets/img/icons/close-icon.svg" alt=""
-      /></a>
+      <a (click)="showPreview = false" class="sidebar-close" href="#"><img src="assets/img/icons/close-icon.svg"
+          alt="" /></a>
     </div>
     <div class="sidebar-body">
       <h6 class="theme-title">Choose Mode</h6>
       <div class="switch-wrapper">
         <div id="dark-mode-toggle">
-          <span
-            class="light-mode"
-            [class.active]="darkTheme == false"
-            (click)="changeTheme('Light')"
-          >
+          <span class="light-mode" [class.active]="darkTheme == false" (click)="changeTheme('Light')">
             <img src="assets/img/icons/sun-icon.svg" class="me-2" alt="" />
-            Light</span
-          >
-          <span
-            [class.active]="darkTheme == true"
-            (click)="changeTheme('Dark')"
-            class="dark-mode"
-            ><i class="far fa-moon me-2"></i> Dark</span
-          >
+            Light</span>
+          <span [class.active]="darkTheme == true" (click)="changeTheme('Dark')" class="dark-mode"><i
+              class="far fa-moon me-2"></i> Dark</span>
         </div>
       </div>
       <div class="row">
@@ -90,18 +47,13 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label for="1" class="checktoggle active"
-                  ><a  class="layout-link">checkbox</a>
+                <label for="1" class="checktoggle active"><a class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">LTR</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-ltr.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-ltr.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -110,18 +62,13 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label for="1" class="checktoggle"
-                  ><a (click)="setRtlFormat()" class="layout-link">checkbox</a>
+                <label for="1" class="checktoggle"><a (click)="setRtlFormat()" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">RTL</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-rtl.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-rtl.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -132,20 +79,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '4'" for="4" class="checktoggle"
-                  ><a (click)="Settings.setLayout('4')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '4'" for="4" class="checktoggle"><a
+                    (click)="Settings.setLayout('4')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Boxed</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-04.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-04.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -154,20 +95,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '5'" for="3" class="checktoggle"
-                  ><a (click)="Settings.setLayout('5')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '5'" for="3" class="checktoggle"><a
+                    (click)="Settings.setLayout('5')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Collapsed</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-01.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-01.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -176,16 +111,12 @@
   </div>
 </div>
 
-<div
-  class="sidebar-settings nav-toggle"
-  [ngClass]="{ 'show-settings': showNavigation }"
->
+<div class="sidebar-settings nav-toggle" [ngClass]="{ 'show-settings': showNavigation }">
   <div class="sidebar-content sticky-sidebar-one">
     <div class="sidebar-header">
       <h5>Navigation Settings</h5>
-      <a (click)="showNavigation = false" class="sidebar-close" href="#"
-        ><img src="assets/img/icons/close-icon.svg" alt=""
-      /></a>
+      <a (click)="showNavigation = false" class="sidebar-close" href="#"><img src="assets/img/icons/close-icon.svg"
+          alt="" /></a>
     </div>
     <div class="sidebar-body">
       <h6 class="theme-title">Navigation Type</h6>
@@ -195,20 +126,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '1'" for="1" class="checktoggle"
-                  ><a (click)="Settings.setLayout('1')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '1'" for="1" class="checktoggle"><a
+                    (click)="Settings.setLayout('1')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Vertical</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-03.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-03.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -217,23 +142,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label
-                  for="2"
-                  class="checktoggle"
-                  [class.active]="changeLayout == '2'"
-                  ><a (click)="Settings.setLayout('2')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label for="2" class="checktoggle" [class.active]="changeLayout == '2'"><a
+                    (click)="Settings.setLayout('2')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Horizontal</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-01.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-01.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -242,20 +158,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '5'" for="3" class="checktoggle"
-                  ><a (click)="Settings.setLayout('5')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '5'" for="3" class="checktoggle"><a
+                    (click)="Settings.setLayout('5')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Collapsed</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-01.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-01.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -264,20 +174,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '4'" for="3" class="checktoggle"
-                  ><a (click)="Settings.setLayout('4')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '4'" for="3" class="checktoggle"><a
+                    (click)="Settings.setLayout('4')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Modern</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-04.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-04.png" alt="layout" />
             </div>
           </div>
         </div>
@@ -286,20 +190,14 @@
             <div class="d-flex align-items-center">
               <div class="status-toggle d-flex align-items-center me-2">
 
-                <label [class.active]="changeLayout == '3'" for="3" class="checktoggle"
-                  ><a (click)="Settings.setLayout('3')" class="layout-link"
-                    >checkbox</a
-                  >
+                <label [class.active]="changeLayout == '3'" for="3" class="checktoggle"><a
+                    (click)="Settings.setLayout('3')" class="layout-link">checkbox</a>
                 </label>
               </div>
               <span class="status-text">Boxed</span>
             </div>
             <div class="layout-img">
-              <img
-                class="img-fliud"
-                src="assets/img/layout-03.png"
-                alt="layout"
-              />
+              <img class="img-fliud" src="assets/img/layout-03.png" alt="layout" />
             </div>
           </div>
         </div>

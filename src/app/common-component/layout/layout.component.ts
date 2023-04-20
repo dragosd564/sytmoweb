@@ -23,18 +23,18 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   public changeTheme(theme: string): void {
     this.Settings.changeTheme.next(theme);
     localStorage.setItem('theme', theme);
   }
   public setRtlFormat(): void {
-    window.location.href =
-      'https://dreamspos.dreamguystech.com/angular/template-rtl'+this.router.url;
+    // window.location.href =
+    //   'https://dreamspos.dreamguystech.com/angular/template-rtl'+this.router.url;
   }
   public setLtrFormat(): void {
-    window.location.href =
-      'https://dreamspos.dreamguystech.com/angular/template'+this.router.url;
+    // window.location.href =
+    //   'https://dreamspos.dreamguystech.com/angular/template'+this.router.url;
   }
 }

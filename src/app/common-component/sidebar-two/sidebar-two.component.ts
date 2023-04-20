@@ -20,12 +20,12 @@ export class SidebarTwoComponent implements OnInit {
       }
     });
 
-    this.sidebar.getSideBarData.subscribe((res: any) => {
-      this.sidebarData = res;
-    });
+    // this.sidebar.getSideBarData.subscribe((res: any) => {
+    //   this.sidebarData = res;
+    // });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   showMenu(val: string): void {
     if (this.opendSubMenu[0] != val) {

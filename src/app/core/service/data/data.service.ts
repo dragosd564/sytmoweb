@@ -1,12 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { paginatorResult } from '../../core.index';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  public env = environment
+  urlApiCatalago = this.env.services.apiCatalog
+  urlApiEntidad = this.env.services.apiEntidad
+
+  constructor(private http: HttpClient) { }
 
   public getCountryList(): Observable<any> {
     return this.http.get('assets/JSON/countrys.json').pipe(
@@ -50,7 +56,6 @@ export class DataService {
       })
     );
   }
-
   public getUserList(): Observable<any> {
     return this.http.get('assets/JSON/userList.json').pipe(
       map((res: any) => {
@@ -58,7 +63,6 @@ export class DataService {
       })
     );
   }
-
   public getInvoiceReport(): Observable<any> {
     return this.http.get('assets/JSON/invoiceReport.json').pipe(
       map((res: any) => {

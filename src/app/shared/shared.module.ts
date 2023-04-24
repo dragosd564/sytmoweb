@@ -65,15 +65,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AngularEditorModule,
     NgChartsModule,
     FullCalendarModule
-    
+
   ],
   providers: [
     DataService,
-    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
   ],
 })
-export class sharedModule {}
+export class sharedModule { }

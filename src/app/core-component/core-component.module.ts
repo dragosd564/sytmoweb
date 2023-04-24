@@ -27,4 +27,4 @@ import { sharedModule } from '../shared/shared.module';
   imports: [CommonModule, CoreComponentRoutingModule, sharedModule],
   providers: [],
 })
-export class CoreComponentModule {}
+export class CoreComponentModule { }

@@ -1227,13 +1227,29 @@ export class SidebarService {
       ]
     },
     {
-      tittle: 'Cuenntas por crobar',
+      tittle: 'Cuentas por Crobar',
       showAsTab: true,
       separateRoute: false,
       menu: [
         {
           menuValue: 'Clientes',
-          route: routes.customerList,
+          route: routes.listaClientes,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'user',
+          page: 'customer-list',
+          subMenus: []
+        },
+      ]
+    },
+    {
+      tittle: 'Cuentas por Pagar',
+      showAsTab: true,
+      separateRoute: false,
+      menu: [
+        {
+          menuValue: 'Proveedores',
+          route: routes.listaPoveedores,
           hasSubRoute: false,
           showSubRoute: false,
           icon: 'user',

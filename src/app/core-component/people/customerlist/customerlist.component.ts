@@ -8,6 +8,7 @@ import {
   pageSelection,
   routes,
 } from 'src/app/core/core.index';
+import { ApisService } from 'src/app/core/service/data/apis.service';
 import { PaginationService, tablePageSize } from 'src/app/shared/shared.index';
 import { SweetalertService } from 'src/app/shared/sweetalert/sweetalert.service';
 
@@ -21,54 +22,39 @@ export class CustomerlistComponent implements OnInit {
   initChecked: boolean = false;
   public tableData: Array<any> = [];
   // pagination variables
-  public pageSize: number = 10;
+  pageSize: number = 10;
+  length = 100;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
   public serialNumberArray: Array<any> = [];
   public totalData: any = 0;
   showFilter: boolean = false;
   dataSource!: MatTableDataSource<any>;
   public searchDataValue = '';
   //** / pagination variables
+
+
+
   constructor(
-    private data: DataService,
+    private data: ApisService,
     private pagination: PaginationService,
     private sweetalert: SweetalertService,
     private router: Router
   ) {
-    this.pagination.tablePageSize.subscribe((res: tablePageSize) => {
-      if (this.router.url == this.routes.customerList) {
-        this.getTableData({ skip: res.skip, limit: res.limit });
-        this.pageSize = res.pageSize;
+  }
+
+  deleteBtn(id: number, i: number) {
+    this.sweetalert.dinamicConfirmDialog('Esta seguro que desea eliminar este cliente').then((result) => {
+      if (result.isConfirmed) {
+        this.data.deleteEntidad(id).subscribe(res => {
+          this.tableData.splice(i, 1)
+        })
       }
     });
   }
 
-  private getTableData(pageOption: pageSelection): void {
-    this.data.getCustomerList().subscribe((apiRes: apiResultFormat) => {
-      this.tableData = [];
-      this.serialNumberArray = [];
-      this.totalData = apiRes.totalData;
-      apiRes.data.map((res: any, index: number) => {
-        let serialNumber = index + 1;
-        if (index >= pageOption.skip && serialNumber <= pageOption.limit) {
-          res.sNo = serialNumber;
-          this.tableData.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<any>(this.tableData);
-      this.pagination.calculatePageSize.next({
-        totalData: this.totalData,
-        pageSize: this.pageSize,
-        tableData: this.tableData,
-        serialNumberArray: this.serialNumberArray,
-      });
-    });
+  ngOnInit(): void {
+    this.getClienntes(1, 10)
   }
-  deleteBtn() {
-    this.sweetalert.deleteBtn();
-  }
-
-  ngOnInit(): void {}
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
     this.tableData = this.dataSource.filteredData;
@@ -98,5 +84,21 @@ export class CustomerlistComponent implements OnInit {
         f.isSelected = false;
       });
     }
+  }
+  paginate(event: any) {
+    this.getClienntes(event.pageIndex + 1, 10)
+  }
+
+  getClienntes(pagina?: number, size?: number, termino?: string) {
+    this.tableData = [];
+    this.data.getClientes(pagina, size, termino).subscribe(clientes => {
+      this.tableData = clientes.result
+      this.length = clientes.length || 0
+      this.dataSource = new MatTableDataSource<any>(this.tableData);
+    })
+  }
+  // [routerLink]="routes.editCustomer"
+  editarCliente(id: number) {
+    this.router.navigate([this.routes.editCustomer], { queryParams: { cliente: id } })
   }
 }

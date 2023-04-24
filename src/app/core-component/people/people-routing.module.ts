@@ -8,17 +8,31 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'customer-list',
+        path: 'lista-clientes',
         loadChildren: () =>
           import('./customerlist/customerlist.module').then(
             (m) => m.CustomerlistModule
           ),
       },
       {
-        path: 'add-customer',
+        path: 'lista-proveedores',
+        loadChildren: () =>
+          import('./listaproveedores/listaproveedores.module').then(
+            (m) => m.ListaproveedoresModule
+          ),
+      },
+      {
+        path: 'crear-cliente',
         loadChildren: () =>
           import('./addcustomer/addcustomer.module').then(
             (m) => m.AddcustomerModule
+          ),
+      },
+      {
+        path: 'crear-proveedor',
+        loadChildren: () =>
+          import('./editarproveedor/editarproveedor.module').then(
+            (m) => m.EditarproveedorModule
           ),
       },
       {
@@ -56,10 +70,17 @@ const routes: Routes = [
           import('./addstore/addstore.module').then((m) => m.AddstoreModule),
       },
       {
-        path: 'edit-customer',
+        path: 'editar-cliente',
         loadChildren: () =>
-          import('./editcustomer/editcustomer.module').then(
-            (m) => m.EditcustomerModule
+          import('./addcustomer/addcustomer.module').then(
+            (m) => m.AddcustomerModule
+          ),
+      },
+      {
+        path: 'editar-proveedor',
+        loadChildren: () =>
+          import('./editarproveedor/editarproveedor.module').then(
+            (m) => m.EditarproveedorModule
           ),
       },
       {
@@ -87,4 +108,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PeopleRoutingModule {}
+export class PeopleRoutingModule { }

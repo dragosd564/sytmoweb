@@ -1,81 +1,114 @@
-
-        <div class="page-header">
-            <div class="page-title">
-                <h4>Customer Management</h4>
-                <h6>Add/Update Customer</h6>
-            </div>
-        </div>
-        <!-- /add -->
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Customer Name</label>
-                            <input type="text" >
-                        </div>
+<div class="page-header">
+    <div class="page-title">
+        <h4>Gestion de Cliente</h4>
+        <h6>Crear/Actualizar Cliente</h6>
+    </div>
+</div>
+<!-- /add -->
+<form [formGroup]="formularioCliente">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <!-- SECCION 1 -->
+                <div class="col-lg-12 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Cuenta Cliente</label>
+                        <input type="text" formControlName="cuentaCliente" (input)="transformInputToUppercase($event)"
+                            name="cuentaCliente">
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" >
-                        </div>
+                </div>
+                <!-- SECCION 2 -->
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Nombre Cliente</label>
+                        <input type="text" formControlName="razonSocial" (input)="transformInputToUppercase($event)"
+                            name="razonSocial">
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" >
-                        </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Numero Identificacion</label>
+                        <input type="text" formControlName="ruc">
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>Choose Country</label>
-                            <select class="form-select">
-                                <option>Choose Country</option>
-                                <option>India</option>
-                                <option>USA</option>
-                            </select>
-                        </div>
+                </div>
+                <!-- SECCION 3 -->
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" formControlName="email">
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group">
-                            <label>City</label>
-                            <select class="form-select">
-                                <option>Choose City</option>
-                                <option>City 1</option>
-                                <option>City 2</option>
-                            </select>
-                        </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input type="text" formControlName="telefono1">
                     </div>
-                    <div class="col-lg-9 col-12">
-                        <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" >
-                        </div>
+                </div>
+                <!-- SECCION SELECT 1 -->
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Pais</label>
+                        <mat-select class="select-input" formControlName="pais" placeholder="Selecciona el pais">
+                            <mat-option *ngFor="let i of pais" [value]="i.pais" (onSelectionChange)="seleccioner(i,1)">
+                                {{i.pais}}
+                            </mat-option>
+                        </mat-select>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Provincia</label>
+                        <mat-select class="select-input" formControlName="provincia"
+                            placeholder="Selecciona el provincia">
+                            <mat-option *ngFor="let i of provincia" [value]="i.provincia"
+                                (onSelectionChange)="seleccioner(i,2)">
+                                {{i.provincia}}
+                            </mat-option>
+                        </mat-select>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>	Avatar</label>
-                            <div class="image-upload">
-                                <input type="file">
-                                <div class="image-uploads">
-                                    <img src="assets/img/icons/upload.svg" alt="img">
-                                    <h4>Drag and drop a file to upload</h4>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <mat-select class="select-input" formControlName="ciudad" placeholder="Selecciona el Ciudad">
+                            <mat-option *ngFor="let i of ciudad" [value]="i.ciudad"
+                                (onSelectionChange)="seleccioner(i,3)">
+                                {{i.ciudad}}
+                            </mat-option>
+                        </mat-select>
                     </div>
-                    <div class="col-lg-12">
-                        <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
-                        <a href="javascript:void(0);"  class="btn btn-cancel">Cancel</a>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Parroquia</label>
+                        <mat-select class="select-input" formControlName="parroquia"
+                            placeholder="Selecciona el Parroquia">
+                            <mat-option *ngFor="let i of parroquia" [value]="i.parroquia"
+                                (onSelectionChange)="seleccioner(i,4)">
+                                {{i.parroquia}}
+                            </mat-option>
+                        </mat-select>
                     </div>
+                </div>
+                <!-- SECCION DIRECCION  -->
+                <div class="col-lg-12 col-12">
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <textarea class="form-control" formControlName="comenta"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <a class="btn btn-submit me-2" style="color: white;" (click)="crearCliente()">{{boton}}</a>
+                    <a class="btn btn-cancel" (click)="salir()" style="color: white;">Cancelar</a>
                 </div>
             </div>
         </div>
-        <!-- /add -->
+    </div>
+</form>
+<!-- /add -->

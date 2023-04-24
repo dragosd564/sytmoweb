@@ -1,12 +1,11 @@
 <div class="page-header">
   <div class="page-title">
-    <h4>Customer List</h4>
-    <h6>Manage your Customers</h6>
+    <h4>Lista de Clientes</h4>
+    <h6>Gestiona a tus Clientes aqui</h6>
   </div>
   <div class="page-btn">
-    <a [routerLink]="routes.addCustomer" class="btn btn-added"
-      ><img src="assets/img/icons/plus.svg" alt="img" />Add Customer</a
-    >
+    <a [routerLink]="routes.addCustomer" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Crear
+      Cliente</a>
   </div>
 </div>
 <!-- /product list -->
@@ -15,44 +14,24 @@
     <div class="table-top">
       <div class="search-set">
         <div class="search-path">
-          <a
-            (click)="showFilter = !showFilter"
-            [class.setclose]="showFilter == true"
-            class="btn btn-filter"
-            id="filter_search"
-          >
-            <img
-              *ngIf="showFilter == false"
-              src="assets/img/icons/filter.svg"
-              alt="img"
-            />
-            <span
-              ><img
-                *ngIf="showFilter == true"
-                src="assets/img/icons/filter.svg"
-                alt="img"
-            /></span>
+          <a (click)="showFilter = !showFilter" [class.setclose]="showFilter == true" class="btn btn-filter"
+            id="filter_search">
+            <img *ngIf="showFilter == false" src="assets/img/icons/filter.svg" alt="img" />
+            <span><img *ngIf="showFilter == true" src="assets/img/icons/filter.svg" alt="img" /></span>
           </a>
         </div>
         <div class="search-input">
-          <a class="btn btn-searchset"
-            ><img src="assets/img/icons/search-white.svg" alt="img"
-          /></a>
+          <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img" /></a>
           <div class="dataTables_filter">
             <label>
-              <input
-                [(ngModel)]="searchDataValue"
-                (ngModelChange)="searchData(searchDataValue)"
-                type="search"
-                class="form-control"
-                placeholder="Search..."
-              />
+              <input [(ngModel)]="searchDataValue" (ngModelChange)="searchData(searchDataValue)" type="search"
+                class="form-control" placeholder="Search..." />
             </label>
           </div>
         </div>
       </div>
       <div class="wordset">
-        <ul>
+        <!-- <ul>
           <li>
             <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"
               ><img src="assets/img/icons/pdf.svg" alt="img"
@@ -68,17 +47,14 @@
               ><img src="assets/img/icons/printer.svg" alt="img"
             /></a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
     <!-- /Filter -->
-    <div
-      class="card mb-0 border-0"
-      [ngClass]="{
+    <!-- <div class="card mb-0 border-0" [ngClass]="{
         'show-sub-menu': showFilter == true,
         'hide-sub-menu': showFilter == false
-      }"
-    >
+      }">
       <div class="card-body pb-0">
         <div class="row">
           <div class="col-lg-2 col-sm-6 col-12">
@@ -103,22 +79,16 @@
           </div>
           <div class="col-lg-1 col-sm-6 col-12 ms-auto">
             <div class="form-group">
-              <a class="btn btn-filters ms-auto"
-                ><img src="assets/img/icons/search-whites.svg" alt="img"
-              /></a>
+              <a class="btn btn-filters ms-auto"><img src="assets/img/icons/search-whites.svg" alt="img" /></a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- /Filter -->
     <div class="table-responsive">
-            <table
-        (matSortChange)="sortData($event)"
-        matSort
-        matSortActive="Sno"
-        matSortDirection="asc"
-        matSortDisableClear class="table datanew">
+      <table (matSortChange)="sortData($event)" matSort matSortActive="Sno" matSortDirection="asc" matSortDisableClear
+        class="table datanew">
         <thead>
           <tr>
             <th>
@@ -127,55 +97,52 @@
                 <span class="checkmarks"></span>
               </label>
             </th>
-            <th mat-sort-header="CustomerName">Customer Name</th>
-            <th mat-sort-header="code">Code</th>
-            <th mat-sort-header="Customer">Customer</th>
-            <th mat-sort-header="Phone">Phone</th>
-            <th mat-sort-header="email">Email</th>
-            <th mat-sort-header="Country">Country</th>
+            <th mat-sort-header="CustomerName">Cliente</th>
+            <th mat-sort-header="code">Identificacion</th>
+            <th mat-sort-header="Customer">Descripcion</th>
+            <th mat-sort-header="Phone">Celular</th>
+            <th mat-sort-header="email">Correo</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let people of tableData; let i = index">
+          <tr *ngFor="let cliente of tableData; let i = index">
             <td>
               <label class="checkboxs">
-                <input type="checkbox" [(ngModel)]="people.isSelected" />
+                <input type="checkbox" [(ngModel)]="cliente.isSelected" />
                 <span class="checkmarks"></span>
               </label>
             </td>
             <td class="productimgname">
               <a href="javascript:void(0);" class="product-img">
-                <img [src]="people.img" alt="product" />
+                <img src="assets/img/customer/no-imagecustomer.png" alt="product" />
               </a>
-              <a href="javascript:void(0);">{{ people.CustomerName }}</a>
+              <a href="javascript:void(0);">{{ cliente.razonSocial || cliente.nombreComercial}}</a>
             </td>
-            <td>{{ people.code }}</td>
-            <td>{{ people.Customer }}</td>
-            <td>{{ people.Phone }}</td>
-            <td>{{ people.email }}</td>
-            <td>{{ people.Country }}</td>
+            <td>{{ cliente.ruc }}</td>
+            <td>{{ cliente.comenta }}</td>
+            <td>{{ cliente.telefono1 }}</td>
+            <td>{{ cliente.email }}</td>
             <td>
-              <a class="me-3" [routerLink]="routes.editCustomer">
+              <a class="me-3" (click)="editarCliente(cliente.id)">
                 <img src="assets/img/icons/edit.svg" alt="img" />
               </a>
-              <a
-                (click)="deleteBtn()"
-                class="me-3 confirm-text"
-                href="javascript:void(0);"
-              >
+              <a (click)="deleteBtn(cliente.id,i)" class="me-3 confirm-text" href="javascript:void(0);">
                 <img src="assets/img/icons/delete.svg" alt="img" />
               </a>
             </td>
           </tr>
           <tr *ngIf="tableData.length === 0">
             <td colspan="12">
-              <h5 class="no-record">No matching records found</h5>
+              <h5 class="no-record">No hay clientes </h5>
             </td>
           </tr>
         </tbody>
       </table>
-<custom-pagination></custom-pagination>
+      <!-- <custom-pagination></custom-pagination> -->
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true"
+        (page)="paginate($event)" aria-label="Select page">
+      </mat-paginator>
     </div>
   </div>
 </div>

@@ -18,6 +18,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./core-component/errorpages/errorpages.module').then((m) => m.ErrorpagesModule),
   },
+  { path: 'listaproveedores', loadChildren: () => import('./core-component/people/listaproveedores/listaproveedores.module').then(m => m.ListaproveedoresModule) },
+  { path: 'editarproveedor', loadChildren: () => import('./core-component/people/editarproveedor/editarproveedor.module').then(m => m.EditarproveedorModule) },
   {
     path: '**',
     redirectTo: 'errorpages/error404',

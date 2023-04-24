@@ -248,11 +248,17 @@ export class routes {
     return this.return + '/edit-purchase-return';
   }
 
-  public static get customerList(): string {
-    return this.people + '/customer-list';
+  public static get listaClientes(): string {
+    return this.people + '/lista-clientes';
+  }
+  public static get listaPoveedores(): string {
+    return this.people + '/lista-proveedores';
   }
   public static get addCustomer(): string {
-    return this.people + '/add-customer';
+    return this.people + '/crear-cliente';
+  }
+  public static get crearPoveedor(): string {
+    return this.people + '/crear-proveedor';
   }
   public static get supplierList(): string {
     return this.people + '/supplier-list';
@@ -273,7 +279,10 @@ export class routes {
     return this.people + '/add-store';
   }
   public static get editCustomer(): string {
-    return this.people + '/edit-customer';
+    return this.people + '/editar-cliente';
+  }
+  public static get editProveedor(): string {
+    return this.people + '/editar-proveedor';
   }
   public static get editSupplier(): string {
     return this.people + '/edit-supplier';

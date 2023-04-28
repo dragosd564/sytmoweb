@@ -9,14 +9,14 @@ const routes: Routes = [
     component: ProductComponent,
     children: [
       {
-        path: 'product-list',
+        path: 'lista-producto',
         loadChildren: () =>
           import('./productlist/productlist.module').then(
             (m) => m.ProductlistModule
           ),
       },
       {
-        path: 'add-product',
+        path: 'crear-producto',
         loadChildren: () =>
           import('./addproduct/addproduct.module').then(
             (m) => m.AddproductModule
@@ -69,10 +69,10 @@ const routes: Routes = [
           import('./barcode/barcode.module').then((m) => m.BarcodeModule),
       },
       {
-        path: 'edit-product',
+        path: 'editar-producto',
         loadChildren: () =>
-          import('./editproduct/editproduct.module').then(
-            (m) => m.EditproductModule
+          import('./addproduct/addproduct.module').then(
+            (m) => m.AddproductModule
           ),
       },
       {
@@ -95,7 +95,7 @@ const routes: Routes = [
           import('./editbrand/editbrand.module').then((m) => m.EditbrandModule),
       },
       {
-        path: 'product-details',
+        path: 'ver-producto',
         loadChildren: () =>
           import('./product-details/product-details.module').then(
             (m) => m.ProductDetailsModule
@@ -114,4 +114,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProductRoutingModule {}
+export class ProductRoutingModule { }

@@ -10,6 +10,7 @@ import {
 import { PaginationService, tablePageSize } from 'src/app/shared/shared.index';
 import { SweetalertService } from 'src/app/shared/sweetalert/sweetalert.service';
 import { Router } from '@angular/router';
+import { ApisService } from 'src/app/core/service/data/apis.service';
 
 @Component({
   selector: 'app-productlist',
@@ -21,7 +22,9 @@ export class ProductlistComponent implements OnInit {
   public tableData: Array<any> = [];
   public routes = routes;
   // pagination variables
-  public pageSize: number = 10;
+  pageSize: number = 10;
+  length = 100;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
   public serialNumberArray: Array<any> = [];
   public totalData: any = 0;
   showFilter: boolean = false;
@@ -30,50 +33,29 @@ export class ProductlistComponent implements OnInit {
   //** / pagination variables
 
   constructor(
-    private data: DataService,
+    private data: ApisService,
     private pagination: PaginationService,
     private sweetlalert: SweetalertService,
     private router: Router
-  ) {
-    this.pagination.tablePageSize.subscribe((res: tablePageSize) => {
-      if (this.router.url == this.routes.productList) {
-        this.getTableData({ skip: res.skip, limit: res.limit });
-        this.pageSize = res.pageSize;
+  ) { }
+
+  deleteBtn(id: number, i: number) {
+    this.sweetlalert.dinamicConfirmDialog('Esta seguro que desea eliminar este cliente').then((result) => {
+      if (result.isConfirmed) {
+        this.data.deleteProducto(id).subscribe(res => {
+          this.tableData.splice(i, 1)
+        })
       }
     });
   }
-
-  deleteBtn() {
-    this.sweetlalert.deleteBtn();
-  }
-  ngOnInit(): void {}
-
-  private getTableData(pageOption: pageSelection): void {
-    this.data.getProductList().subscribe((apiRes: apiResultFormat) => {
-      this.tableData = [];
-      this.serialNumberArray = [];
-      this.totalData = apiRes.totalData;
-      apiRes.data.map((res: any, index: number) => {
-        let serialNumber = index + 1;
-        if (index >= pageOption.skip && serialNumber <= pageOption.limit) {
-          res.sNo = serialNumber;
-          this.tableData.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<any>(this.tableData);
-      this.pagination.calculatePageSize.next({
-        totalData: this.totalData,
-        pageSize: this.pageSize,
-        tableData: this.tableData,
-        serialNumberArray: this.serialNumberArray,
-      });
-    });
+  ngOnInit(): void {
+    this.getProductos(1, 10)
   }
 
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
     this.tableData = this.dataSource.filteredData;
+    this.getProductos(1, 10, value.trim().toLowerCase())
   }
 
   public sortData(sort: Sort) {
@@ -100,5 +82,24 @@ export class ProductlistComponent implements OnInit {
         f.isSelected = false;
       });
     }
+  }
+
+  paginate(event: any) {
+    this.getProductos(event.pageIndex + 1, 10, this.dataSource.filter)
+  }
+
+  getProductos(pagina?: number, size?: number, termino?: string) {
+    this.tableData = [];
+    this.data.getProductos(pagina, size, termino).subscribe(clientes => {
+      this.tableData = clientes.result
+      this.length = clientes.length || 0
+      this.dataSource = new MatTableDataSource<any>(this.tableData);
+    })
+  }
+  verProducto(id: number) {
+    this.router.navigate([this.routes.verProducto], { queryParams: { producto: id } })
+  }
+  editarProdcuto(id: number) {
+    this.router.navigate([this.routes.editProduct], { queryParams: { producto: id } })
   }
 }

@@ -12,6 +12,7 @@ export class ApisService {
   public env = environment
   urlApiCatalago = this.env.services.apiCatalog
   urlApiEntidad = this.env.services.apiEntidad
+  urlApiProducto = this.env.services.apiProducto
 
   constructor(private http: HttpClient) { }
   //nuevos endPoints
@@ -109,6 +110,57 @@ export class ApisService {
     return this.http.delete<any>(`${this.urlApiEntidad}/eliminar/${id}`).pipe(
       map((clientes: paginatorResult) => {
         return clientes;
+      })
+    );
+  }
+
+  //productos
+  public getProductos(pagina?: number, size?: number, termino?: string) {
+    let params = new HttpParams();
+
+    if (pagina && size) {
+      params = params.append('page', String(pagina));
+      params = params.append('pageSize', String(size));
+    }
+
+    if (termino && pagina && size) {
+      params = params.append('term', String(termino));
+      params = params.append('page', String(pagina));
+      params = params.append('pageSize', String(size));
+    }
+
+    return this.http.get<any>(`${this.urlApiProducto}/producto/productos`, { params: params }).pipe(
+      map((producto: paginatorResult) => {
+        return producto;
+      })
+    );
+  }
+  public getProductoById(id: number) {
+    return this.http.get<any>(`${this.urlApiProducto}/producto/consultar/${id}`).pipe(
+      map((producto: paginatorResult) => {
+        return producto;
+      })
+    );
+  }
+  public crearProducto(datosProducto?: any) {
+    return this.http.post<any>(`${this.urlApiProducto}/producto/crear`, datosProducto).pipe(
+      map((producto: paginatorResult) => {
+        return producto;
+      })
+    );
+  }
+  public modificarProducto(id?: number, datosProducto?: any) {
+    return this.http.put<any>(`${this.urlApiProducto}/producto/modificar/${id}`, datosProducto).pipe(
+      map((producto: paginatorResult) => {
+        return producto;
+      })
+    );
+  }
+
+  public deleteProducto(id: number) {
+    return this.http.delete<any>(`${this.urlApiProducto}/producto/eliminar/${id}`).pipe(
+      map((producto: paginatorResult) => {
+        return producto;
       })
     );
   }

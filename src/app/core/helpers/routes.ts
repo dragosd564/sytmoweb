@@ -111,11 +111,11 @@ export class routes {
 
   // core pages child routes
 
-  public static get productList(): string {
-    return this.product + '/product-list';
+  public static get listaProducto(): string {
+    return this.product + '/lista-producto';
   }
   public static get addProduct(): string {
-    return this.product + '/add-product';
+    return this.product + '/crear-producto';
   }
   public static get categoryList(): string {
     return this.product + '/category-list';
@@ -139,7 +139,7 @@ export class routes {
     return this.product + '/barcode';
   }
   public static get editProduct(): string {
-    return this.product + '/edit-product';
+    return this.product + '/editar-producto';
   }
   public static get editCategory(): string {
     return this.product + '/edit-category';
@@ -150,8 +150,8 @@ export class routes {
   public static get editBrand(): string {
     return this.product + '/edit-brand';
   }
-  public static get productDetails(): string {
-    return this.product + '/product-details';
+  public static get verProducto(): string {
+    return this.product + '/ver-producto';
   }
   public static get brandList(): string {
     return this.product + '/brand-list';

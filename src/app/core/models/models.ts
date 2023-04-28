@@ -86,5 +86,43 @@ export interface Clientes {
   esProveedor?: null;
 }
 
-
-
+export interface Producto {
+  id?: number;
+  codigo?: string;
+  codigoInterno?: string;
+  codigoBarra?: string;
+  cuenta?: string;
+  cuenta2?: string;
+  cuenta3?: string;
+  nombre?: string;
+  presentacion?: null;
+  aplica?: string;
+  tipo?: string;
+  modelo?: string;
+  clase?: string;
+  subClase?: string;
+  origen?: string;
+  marca?: string;
+  unidad?: string;
+  factor?: number;
+  ubica?: string;
+  validaStock?: string;
+  ivaSn?: string;
+  valorUltimaCompra?: number;
+  fechaUltimaCompra?: Date;
+  valorUltimaVenta?: null;
+  fechaUltimaVenta?: null;
+  pvpA?: number;
+  pvpB?: number;
+  pvpC?: number;
+  pvpD?: number;
+  pvpE?: number;
+  imagen?: string;
+  modificaPrecio?: boolean;
+  modificaDescripcion?: boolean;
+  porcentajeDescuento?: number;
+  comentario?: string;
+  color?: string;
+  talla?: string;
+  pideSerie?: boolean;
+}
